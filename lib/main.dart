@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     print('GetWeatherData');
   }
   Future<bool> _getFutureBool() {
-    return Future.delayed(Duration(milliseconds: 10))
+    return Future.delayed(Duration(milliseconds: 1500))
         .then((onValue) => true);
   }
   @override
