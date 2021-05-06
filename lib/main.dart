@@ -6,19 +6,17 @@ import 'View/Screens/SomethingIsWrongView.dart';
 
 void main() {
   runApp(
-      MultiProvider(
-        providers: [
-          // ChangeNotifierProvider<CurrentPageContoller>(create: (_) => CurrentPageContoller()),
-        ],
-        child: MyApp(),
-      )
+      MyApp()
   );
 }
 
 class MyApp extends StatelessWidget {
   Future<void> _getWeatherData()async {
-
     print('GetWeatherData');
+  }
+  Future<bool> _getFutureBool() {
+    return Future.delayed(Duration(milliseconds: 10))
+        .then((onValue) => true);
   }
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class MyApp extends StatelessWidget {
         '/HomeView': (context) => HomeView(),
       },
       home: FutureBuilder(
-        future: Future.delayed(Duration(seconds: 2)),
+        future: _getFutureBool(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return SomethingWentWrong();
