@@ -76,7 +76,7 @@ class _HomeViewState extends State<HomeView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                  'images/Partly cloudy.svg',
+                  'images/PartlyCloudy.svg',
                   color: mainColor,
                   width: _width*.6,
                   height: _height*.22,
@@ -144,16 +144,16 @@ class _HomeViewState extends State<HomeView> {
               scrollDirection: Axis.horizontal,
               children: [
                 SizedBox(width: _width*.06,),
-                TimeWeatherCard(width: _width, height: _height),
-                TimeWeatherCard(width: _width, height: _height),
-                TimeWeatherCard(width: _width, height: _height),
-                TimeWeatherCard(width: _width, height: _height),
-                TimeWeatherCard(width: _width, height: _height),
-                TimeWeatherCard(width: _width, height: _height),
-
+                TimeWeatherCard(width: _width, height: _height,temp: ' 24°',text: 'Cloudy',time: '17:00',imagePath: 'images/Cloudy.svg',),
+                TimeWeatherCard(width: _width, height: _height,temp: ' 20°',text: 'Partly Cloudy',time: '21:00',imagePath: 'images/PartlyCloudy.svg',),
+                TimeWeatherCard(width: _width, height: _height,temp: ' 19°',text: 'Sunny',time: '20:00',imagePath: 'images/Sunny.svg',),
+                TimeWeatherCard(width: _width, height: _height,temp: ' 22°',text: 'Heavy Rain',time: '18:00',imagePath: 'images/HeavilyRainy.svg',),
+                TimeWeatherCard(width: _width, height: _height,temp: ' 21°',text: 'Rainy',time: '19:00',imagePath: 'images/Rainy.svg',),
+                SizedBox(width: _width*.06,),
               ],
             ),
-          )
+          ),
+          SizedBox(height: _height*.02,)
         ],
       ),
     );
@@ -164,10 +164,18 @@ class TimeWeatherCard extends StatelessWidget {
   const TimeWeatherCard({
     @required double width,
     @required double height,
+    @required this.imagePath,
+    @required this.temp,
+    @required this.text,
+    @required this.time,
   }) : _width = width, _height = height;
 
   final double _width;
   final double _height;
+  final String imagePath;
+  final String temp;
+  final String time;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +191,7 @@ class TimeWeatherCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(
-            'images/Partly cloudy.svg',
+            imagePath,
             color: mainColor,
             width: _width*.25,
             height: _height*.08,
@@ -192,11 +200,11 @@ class TimeWeatherCard extends StatelessWidget {
           Column(
             children: [
               Text(
-                '17:00',
+                time,
                 style: secStyle(_width),
               ),
               Text(
-                  ' 24°',
+                  temp,
                   style: tempStyle(_width)
               ),
 
